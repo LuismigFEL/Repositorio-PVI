@@ -1,0 +1,22 @@
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\bin\Debug\EjerciciosSemana1.exe.config
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\bin\Debug\EjerciciosSemana1.exe
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\bin\Debug\EjerciciosSemana1.pdb
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.csproj.AssemblyReference.cache
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.Form1.resources
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.Properties.Resources.resources
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.csproj.GenerateResource.cache
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.csproj.CoreCompileInputs.cache
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.exe
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.pdb
+D:\Cursos\Programacion Visual I\Clase 1\EjerciciosSemana1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.exe.config
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\bin\Debug\EjerciciosSemana1.exe.config
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\bin\Debug\EjerciciosSemana1.exe
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\bin\Debug\EjerciciosSemana1.pdb
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.csproj.AssemblyReference.cache
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.exe.config
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.Form1.resources
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.Properties.Resources.resources
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.csproj.GenerateResource.cache
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.csproj.CoreCompileInputs.cache
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.exe
+D:\Cursos\Programacion Visual I\Clase 1\Ejercicios Semana 1\EjerciciosSemana1\obj\Debug\EjerciciosSemana1.pdb
