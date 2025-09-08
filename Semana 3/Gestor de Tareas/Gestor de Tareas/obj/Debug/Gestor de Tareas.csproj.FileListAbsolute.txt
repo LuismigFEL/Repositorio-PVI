@@ -1,0 +1,11 @@
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\bin\Debug\Gestor de Tareas.exe.config
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\bin\Debug\Gestor de Tareas.exe
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\bin\Debug\Gestor de Tareas.pdb
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor de Tareas.csproj.AssemblyReference.cache
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor_de_Tareas.Form1.resources
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor_de_Tareas.Properties.Resources.resources
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor de Tareas.csproj.GenerateResource.cache
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor de Tareas.csproj.CoreCompileInputs.cache
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor de Tareas.exe
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor de Tareas.pdb
+D:\Cursos\Programacion Visual I\Semana 3\Gestor de Tareas\Gestor de Tareas\obj\Debug\Gestor de Tareas.exe.config
