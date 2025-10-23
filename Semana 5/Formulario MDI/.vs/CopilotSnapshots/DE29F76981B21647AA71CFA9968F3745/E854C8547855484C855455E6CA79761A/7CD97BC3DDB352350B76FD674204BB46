@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Formulario_MDI
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void ingresarEstudianteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in this.MdiChildren)
+            {
+                if (form is Form2)
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            Form2 IngresaEstudiante = new Form2();
+            IngresaEstudiante.MdiParent = this;
+            IngresaEstudiante.Show();
+        }
+
+        private void verEstudianteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form form in this.MdiChildren)
+            {
+                if (form is Form3)
+                {
+                    form.Activate();
+                    return;
+                }
+            }
+
+            Form3 VerEstudiante = new Form3();
+            VerEstudiante.MdiParent = this;
+            VerEstudiante.Show();
+        }
+    }
+}

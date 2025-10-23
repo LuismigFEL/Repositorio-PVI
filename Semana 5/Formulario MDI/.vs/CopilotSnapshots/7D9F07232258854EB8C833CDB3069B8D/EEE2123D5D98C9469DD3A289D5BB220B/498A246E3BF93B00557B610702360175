@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Formulario_MDI
+{
+    public partial class Form3 : Form
+    {
+        public Form3()
+        {
+            InitializeComponent();
+            this.Load += Form3_Load;
+        }
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            DGVDatos.AutoGenerateColumns = false;
+            List<Estudiante> estudiantes = DatosCompartidos.Estudiantes;
+            if (estudiantes == null || estudiantes.Count == 0)
+            {
+                DGVDatos.DataSource = null;
+                MessageBox.Show("No hay estudiantes registrados.");
+                return;
+            }
+            else
+            {
+                DGVDatos.DataSource = estudiantes;
+            }
+
+            
+
+        }
+    }
+}

@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Formulario_MDI
+{
+    public partial class Form3 : Form
+    {
+        public Form3()
+        {
+            InitializeComponent();
+            this.Load += Form3_Load;
+        }
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            // Ya no se muestra un solo estudiante en etiquetas
+            if (labelShowCarnet != null) labelShowCarnet.Text = string.Empty;
+            if (labelShowNombre != null) labelShowNombre.Text = string.Empty;
+
+            var estudiantes = DatosCompartidos.Estudiantes;
+            if (estudiantes == null || estudiantes.Count == 0)
+            {
+                DGVDatos.DataSource = null;
+                MessageBox.Show("No hay estudiantes registrados.");
+                return;
+            }
+
+            // Preparar DataTable con columnas: Carnet, Nombre, Asignatura, Nota
+            var tabla = new DataTable();
+            tabla.Columns.Add("Carnet", typeof(string));
+            tabla.Columns.Add("Nombre", typeof(string));
+            tabla.Columns.Add("Asignatura", typeof(string));
+            tabla.Columns.Add("Nota", typeof(double));
+
+            foreach (var est in estudiantes)
+            {
+                if (est?.Asignaturas == null || est.Asignaturas.Count == 0)
+                {
+                    // Si no tiene asignaturas, opcionalmente se puede agregar una fila sin asignatura
+                    // tabla.Rows.Add(est.Carnet, est.Nombre, string.Empty, 0d);
+                    continue;
+                }
+
+                foreach (var asig in est.Asignaturas)
+                {
+                    var fila = tabla.NewRow();
+                    fila["Carnet"] = est.Carnet;
+                    fila["Nombre"] = est.Nombre;
+                    fila["Asignatura"] = asig.Nombre;
+                    fila["Nota"] = asig.Nota;
+                    tabla.Rows.Add(fila);
+                }
+            }
+
+            // Configurar columnas del DataGridView la primera vez
+            DGVDatos.AutoGenerateColumns = false;
+            if (DGVDatos.Columns.Count == 0)
+            {
+                DGVDatos.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "colCarnet",
+                    HeaderText = "Carnet",
+                    DataPropertyName = "Carnet",
+                    Width = 120
+                });
+                DGVDatos.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "colNombre",
+                    HeaderText = "Nombre",
+                    DataPropertyName = "Nombre",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                });
+                DGVDatos.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "colAsignatura",
+                    HeaderText = "Asignatura",
+                    DataPropertyName = "Asignatura",
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+                });
+                DGVDatos.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    Name = "colNota",
+                    HeaderText = "Nota",
+                    DataPropertyName = "Nota",
+                    Width = 80
+                });
+            }
+
+            DGVDatos.DataSource = tabla;
+        }
+    }
+}

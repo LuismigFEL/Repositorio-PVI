@@ -1,0 +1,141 @@
+﻿namespace Formulario_MDI
+{
+    partial class Form2
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.labelCarnet = new System.Windows.Forms.Label();
+            this.labelNombre = new System.Windows.Forms.Label();
+            this.txtCarnet = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
+            this.DGVAsignaturas = new System.Windows.Forms.DataGridView();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.dgvAsignatura = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtvNota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVAsignaturas)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // labelCarnet
+            // 
+            this.labelCarnet.AutoSize = true;
+            this.labelCarnet.Location = new System.Drawing.Point(48, 42);
+            this.labelCarnet.Name = "labelCarnet";
+            this.labelCarnet.Size = new System.Drawing.Size(46, 16);
+            this.labelCarnet.TabIndex = 0;
+            this.labelCarnet.Text = "Carnet";
+            // 
+            // labelNombre
+            // 
+            this.labelNombre.AutoSize = true;
+            this.labelNombre.Location = new System.Drawing.Point(48, 74);
+            this.labelNombre.Name = "labelNombre";
+            this.labelNombre.Size = new System.Drawing.Size(56, 16);
+            this.labelNombre.TabIndex = 1;
+            this.labelNombre.Text = "Nombre";
+            // 
+            // txtCarnet
+            // 
+            this.txtCarnet.Location = new System.Drawing.Point(142, 42);
+            this.txtCarnet.Name = "txtCarnet";
+            this.txtCarnet.Size = new System.Drawing.Size(100, 22);
+            this.txtCarnet.TabIndex = 2;
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.Location = new System.Drawing.Point(142, 74);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(100, 22);
+            this.txtNombre.TabIndex = 3;
+            // 
+            // DGVAsignaturas
+            // 
+            this.DGVAsignaturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVAsignaturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvAsignatura,
+            this.dtvNota});
+            this.DGVAsignaturas.Location = new System.Drawing.Point(12, 118);
+            this.DGVAsignaturas.Name = "DGVAsignaturas";
+            this.DGVAsignaturas.RowHeadersWidth = 51;
+            this.DGVAsignaturas.RowTemplate.Height = 24;
+            this.DGVAsignaturas.Size = new System.Drawing.Size(300, 150);
+            this.DGVAsignaturas.TabIndex = 4;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(51, 292);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 5;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // dgvAsignatura
+            // 
+            this.dgvAsignatura.HeaderText = "Asignatura";
+            this.dgvAsignatura.MinimumWidth = 6;
+            this.dgvAsignatura.Name = "dgvAsignatura";
+            this.dgvAsignatura.Width = 125;
+            // 
+            // dtvNota
+            // 
+            this.dtvNota.HeaderText = "Nota";
+            this.dtvNota.MinimumWidth = 6;
+            this.dtvNota.Name = "dtvNota";
+            this.dtvNota.Width = 125;
+            // 
+            // Form2
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnGuardar);
+            this.Controls.Add(this.DGVAsignaturas);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.txtCarnet);
+            this.Controls.Add(this.labelNombre);
+            this.Controls.Add(this.labelCarnet);
+            this.Name = "Form2";
+            this.Text = "Ingresar Estudiante";
+            ((System.ComponentModel.ISupportInitialize)(this.DGVAsignaturas)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label labelCarnet;
+        private System.Windows.Forms.Label labelNombre;
+        private System.Windows.Forms.TextBox txtCarnet;
+        private System.Windows.Forms.TextBox txtNombre;
+        private System.Windows.Forms.DataGridView DGVAsignaturas;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvAsignatura;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dtvNota;
+    }
+}

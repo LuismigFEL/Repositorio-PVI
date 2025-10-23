@@ -1,0 +1,13 @@
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario MDI.csproj.AssemblyReference.cache
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario_MDI.Form1.resources
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario_MDI.Form2.resources
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario_MDI.Form3.resources
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario_MDI.Properties.Resources.resources
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario MDI.csproj.GenerateResource.cache
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario MDI.csproj.CoreCompileInputs.cache
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\bin\Debug\Formulario MDI.exe.config
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\bin\Debug\Formulario MDI.exe
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\bin\Debug\Formulario MDI.pdb
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario MDI.exe
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario MDI.pdb
+D:\Cursos\Programacion Visual I\Semana 5\Formulario MDI\Formulario MDI\obj\Debug\Formulario MDI.exe.config
