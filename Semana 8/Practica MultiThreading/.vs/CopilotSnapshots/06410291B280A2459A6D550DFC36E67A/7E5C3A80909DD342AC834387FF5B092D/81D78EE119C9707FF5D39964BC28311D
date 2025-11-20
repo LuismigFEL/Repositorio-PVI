@@ -1,0 +1,449 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Practica_MultiThreading
+{
+    public partial class Form1 : Form
+    {
+        private List<int> listaOriginal;
+        private List<int> listaBurbuja;
+        private List<int> listaQuick;
+        private List<int> listaMerge;
+        private List<int> listaSelection;
+
+        private Thread hiloBurbuja;
+        private volatile bool cancelarBurbuja;
+
+        private Stopwatch relojBurbuja = new Stopwatch();
+        private Stopwatch relojQuick = new Stopwatch();
+        private Stopwatch relojMerge = new Stopwatch();
+        private Stopwatch relojSelection = new Stopwatch();
+
+        // Iteration counters
+        private long iterBurbujaComparaciones;
+        private long iterBurbujaIntercambios;
+        private long iterQuickParticiones;
+        private long iterQuickComparaciones;
+        private long iterMergeComparaciones;
+        private long iterMergeMezclas;
+        private long iterSelectionComparaciones;
+        private long iterSelectionIntercambios;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void ResetUI()
+        {
+            // Reset progress bars and labels
+            progressBurbuja.Value =0;
+            progressQuicksort.Value =0;
+            if (progressMerge != null) progressMerge.Value =0;
+            if (progressSelection != null) progressSelection.Value =0;
+
+            lblBurbuja.Text = "Burbuja:0%";
+            lblQuicksort.Text = "QuickSort:0%";
+            if (lblMerge != null) lblMerge.Text = "MergeSort:0%";
+            if (lblSelection != null) lblSelection.Text = "SelectionSort:0%";
+
+            // Reset chart
+            if (chartTiempos != null)
+            {
+                foreach (var series in chartTiempos.Series)
+                    series.Points.Clear();
+            }
+        }
+
+        private void btnGenerar_Click(object sender, EventArgs e)
+        {
+            int cantidad =100000;
+            try
+            {
+                if (numCantidad != null)
+                    cantidad = (int)numCantidad.Value;
+            }
+            catch { }
+
+            Random rnd = new Random();
+            listaOriginal = new List<int>(cantidad);
+            for (int i =0; i < cantidad; i++)
+                listaOriginal.Add(rnd.Next(0,1000000));
+
+            MessageBox.Show($"Lista generada correctamente con {cantidad:N0} números.");
+        }
+
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            if (listaOriginal == null || listaOriginal.Count ==0)
+            {
+                MessageBox.Show("Primero genera los datos.");
+                return;
+            }
+
+            if ((backgroundWorkerQuickSort != null && backgroundWorkerQuickSort.IsBusy) ||
+                (backgroundWorkerMergeSort != null && backgroundWorkerMergeSort.IsBusy) ||
+                (backgroundWorkerSelectionSort != null && backgroundWorkerSelectionSort.IsBusy) ||
+                (hiloBurbuja != null && hiloBurbuja.IsAlive))
+            {
+                MessageBox.Show("Algún algoritmo aún está en ejecución. Deténlos antes de iniciar nuevamente.");
+                return;
+            }
+
+            ResetUI();
+
+            // Reset counters
+            iterBurbujaComparaciones =0;
+            iterBurbujaIntercambios =0;
+            iterQuickParticiones =0;
+            iterQuickComparaciones =0;
+            iterMergeComparaciones =0;
+            iterMergeMezclas =0;
+            iterSelectionComparaciones =0;
+            iterSelectionIntercambios =0;
+
+            // Copiamos la lista para cada algoritmo
+            listaBurbuja = new List<int>(listaOriginal);
+            listaQuick = new List<int>(listaOriginal);
+            listaMerge = new List<int>(listaOriginal);
+            listaSelection = new List<int>(listaOriginal);
+
+            // Iniciar el hilo Burbuja
+            cancelarBurbuja = false;
+            hiloBurbuja = new Thread(new ThreadStart(OrdenarBurbuja)) { IsBackground = true };
+            hiloBurbuja.Start();
+
+            // Iniciar los BackgroundWorker
+            if (backgroundWorkerQuickSort != null)
+                backgroundWorkerQuickSort.RunWorkerAsync(listaQuick);
+            if (backgroundWorkerMergeSort != null)
+                backgroundWorkerMergeSort.RunWorkerAsync(listaMerge);
+            if (backgroundWorkerSelectionSort != null)
+                backgroundWorkerSelectionSort.RunWorkerAsync(listaSelection);
+        }
+
+        private void btnDetener_Click(object sender, EventArgs e)
+        {
+            // Solicitar cancelación
+            cancelarBurbuja = true;
+            try
+            {
+                if (backgroundWorkerQuickSort != null && backgroundWorkerQuickSort.IsBusy)
+                    backgroundWorkerQuickSort.CancelAsync();
+                if (backgroundWorkerMergeSort != null && backgroundWorkerMergeSort.IsBusy)
+                    backgroundWorkerMergeSort.CancelAsync();
+                if (backgroundWorkerSelectionSort != null && backgroundWorkerSelectionSort.IsBusy)
+                    backgroundWorkerSelectionSort.CancelAsync();
+            }
+            catch { }
+        }
+
+        private void OrdenarBurbuja()
+        {
+            relojBurbuja.Restart();
+            int n = listaBurbuja.Count;
+            for (int i =0; i < n -1; i++)
+            {
+                if (cancelarBurbuja) break;
+
+                for (int j =0; j < n - i -1; j++)
+                {
+                    if (cancelarBurbuja) break;
+
+                    iterBurbujaComparaciones++;
+                    if (listaBurbuja[j] > listaBurbuja[j +1])
+                    {
+                        int temp = listaBurbuja[j];
+                        listaBurbuja[j] = listaBurbuja[j +1];
+                        listaBurbuja[j +1] = temp;
+                        iterBurbujaIntercambios++;
+                    }
+                }
+
+                // Reportar progreso (cada1000 iteraciones)
+                if (i %1000 ==0)
+                {
+                    int progreso = (int)((i / (float)n) *100);
+                    this.Invoke(new Action(() =>
+                    {
+                        progressBurbuja.Value = Math.Min(progreso,100);
+                        lblBurbuja.Text = $"Burbuja: {progreso}%";
+                    }));
+                }
+            }
+
+            relojBurbuja.Stop();
+            this.Invoke(new Action(() =>
+            {
+                progressBurbuja.Value = cancelarBurbuja ? progressBurbuja.Value :100;
+                lblBurbuja.Text = cancelarBurbuja
+                    ? "Burbuja: Cancelado"
+                    : $"Burbuja: Completado en {relojBurbuja.ElapsedMilliseconds} ms";
+                ActualizarChart("Burbuja", relojBurbuja.ElapsedMilliseconds);
+            }));
+        }
+
+        private void QuickSort(List<int> lista, int izquierda, int derecha, BackgroundWorker worker)
+        {
+            if (worker != null && worker.CancellationPending) return;
+
+            if (izquierda < derecha)
+            {
+                int pivot = Particionar(lista, izquierda, derecha, ref iterQuickComparaciones);
+                iterQuickParticiones++;
+                QuickSort(lista, izquierda, pivot -1, worker);
+                QuickSort(lista, pivot +1, derecha, worker);
+            }
+
+            if (derecha %1000 ==0 && worker != null && worker.WorkerReportsProgress) // reporte periódico
+            {
+                int progreso = (int)((Math.Max(0, derecha) / (float)lista.Count) *100);
+                worker.ReportProgress(Math.Min(Math.Max(progreso,0),100));
+            }
+        }
+
+        private int Particionar(List<int> lista, int izquierda, int derecha, ref long comparaciones)
+        {
+            int pivote = lista[derecha];
+            int i = izquierda -1;
+            for (int j = izquierda; j < derecha; j++)
+            {
+                comparaciones++;
+                if (lista[j] <= pivote)
+                {
+                    i++;
+                    int temp = lista[i];
+                    lista[i] = lista[j];
+                    lista[j] = temp;
+                }
+            }
+            int temp2 = lista[i +1];
+            lista[i +1] = lista[derecha];
+            lista[derecha] = temp2;
+            return i +1;
+        }
+
+        private void backgroundWorkerQuickSort_DoWork(object sender, DoWorkEventArgs e)
+        {
+            relojQuick.Restart();
+            List<int> lista = (List<int>)e.Argument;
+            QuickSort(lista,0, lista.Count -1, backgroundWorkerQuickSort);
+            if (backgroundWorkerQuickSort.CancellationPending)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void backgroundWorkerQuickSort_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressQuicksort.Value = e.ProgressPercentage;
+            lblQuicksort.Text = $"QuickSort: {e.ProgressPercentage}%";
+        }
+
+        private void backgroundWorkerQuickSort_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            relojQuick.Stop();
+            if (e.Cancelled)
+            {
+                lblQuicksort.Text = "QuickSort: Cancelado";
+            }
+            else if (e.Error != null)
+            {
+                lblQuicksort.Text = "QuickSort: Error";
+            }
+            else
+            {
+                lblQuicksort.Text = $"QuickSort: Completado en {relojQuick.ElapsedMilliseconds} ms";
+                progressQuicksort.Value =100;
+            }
+            ActualizarChart("QuickSort", relojQuick.ElapsedMilliseconds);
+        }
+
+        // MergeSort implementation
+        private void backgroundWorkerMergeSort_DoWork(object sender, DoWorkEventArgs e)
+        {
+            relojMerge.Restart();
+            var worker = (BackgroundWorker)sender;
+            var arr = (List<int>)e.Argument;
+            var buffer = new int[arr.Count];
+            MergeSort(arr, buffer,0, arr.Count -1, worker, e);
+        }
+
+        private void backgroundWorkerMergeSort_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressMerge.Value = Math.Min(Math.Max(e.ProgressPercentage,0),100);
+            lblMerge.Text = $"MergeSort: {progressMerge.Value}%";
+        }
+
+        private void backgroundWorkerMergeSort_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            relojMerge.Stop();
+            if (e.Cancelled)
+            {
+                lblMerge.Text = "MergeSort: Cancelado";
+            }
+            else if (e.Error != null)
+            {
+                lblMerge.Text = "MergeSort: Error";
+            }
+            else
+            {
+                lblMerge.Text = $"MergeSort: Completado en {relojMerge.ElapsedMilliseconds} ms";
+                progressMerge.Value =100;
+            }
+            ActualizarChart("MergeSort", relojMerge.ElapsedMilliseconds);
+        }
+
+        private void MergeSort(List<int> a, int[] buffer, int left, int right, BackgroundWorker worker, DoWorkEventArgs e)
+        {
+            if (worker.CancellationPending)
+            {
+                e.Cancel = true; return;
+            }
+
+            if (left >= right) return;
+
+            int mid = (left + right) /2;
+            MergeSort(a, buffer, left, mid, worker, e);
+            if (e.Cancel) return;
+            MergeSort(a, buffer, mid +1, right, worker, e);
+            if (e.Cancel) return;
+            Merge(a, buffer, left, mid, right);
+            iterMergeMezclas++;
+
+            // Progress heuristic
+            int progreso = (int)((right / (float)a.Count) *100);
+            if (worker.WorkerReportsProgress)
+                worker.ReportProgress(Math.Min(Math.Max(progreso,0),100));
+        }
+
+        private void Merge(List<int> a, int[] buffer, int left, int mid, int right)
+        {
+            int i = left, j = mid +1, k = left;
+            while (i <= mid && j <= right)
+            {
+                iterMergeComparaciones++;
+                if (a[i] <= a[j]) buffer[k++] = a[i++];
+                else buffer[k++] = a[j++];
+            }
+            while (i <= mid) buffer[k++] = a[i++];
+            while (j <= right) buffer[k++] = a[j++];
+            for (int t = left; t <= right; t++) a[t] = buffer[t];
+        }
+
+        // SelectionSort implementation
+        private void backgroundWorkerSelectionSort_DoWork(object sender, DoWorkEventArgs e)
+        {
+            relojSelection.Restart();
+            var worker = (BackgroundWorker)sender;
+            var arr = (List<int>)e.Argument;
+            SelectionSort(arr, worker, e);
+        }
+
+        private void backgroundWorkerSelectionSort_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressSelection.Value = Math.Min(Math.Max(e.ProgressPercentage,0),100);
+            lblSelection.Text = $"SelectionSort: {progressSelection.Value}%";
+        }
+
+        private void backgroundWorkerSelectionSort_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            relojSelection.Stop();
+            if (e.Cancelled)
+            {
+                lblSelection.Text = "SelectionSort: Cancelado";
+            }
+            else if (e.Error != null)
+            {
+                lblSelection.Text = "SelectionSort: Error";
+            }
+            else
+            {
+                lblSelection.Text = $"SelectionSort: Completado en {relojSelection.ElapsedMilliseconds} ms";
+                progressSelection.Value =100;
+            }
+            ActualizarChart("SelectionSort", relojSelection.ElapsedMilliseconds);
+        }
+
+        private void SelectionSort(List<int> a, BackgroundWorker worker, DoWorkEventArgs e)
+        {
+            int n = a.Count;
+            for (int i =0; i < n -1; i++)
+            {
+                if (worker.CancellationPending) { e.Cancel = true; return; }
+
+                int minIdx = i;
+                for (int j = i +1; j < n; j++)
+                {
+                    iterSelectionComparaciones++;
+                    if (a[j] < a[minIdx]) minIdx = j;
+                }
+                if (minIdx != i)
+                {
+                    int tmp = a[i]; a[i] = a[minIdx]; a[minIdx] = tmp;
+                    iterSelectionIntercambios++;
+                }
+
+                if (i %1000 ==0 && worker.WorkerReportsProgress)
+                {
+                    int progreso = (int)((i / (float)n) *100);
+                    worker.ReportProgress(Math.Min(Math.Max(progreso,0),100));
+                }
+            }
+        }
+
+        private void btnGuardarReporte_Click(object sender, EventArgs e)
+        {
+            using (var sfd = new SaveFileDialog())
+            {
+                sfd.Title = "Guardar reporte";
+                sfd.Filter = "Documento de Word RTF (*.rtf)|*.rtf";
+                sfd.FileName = "Reporte_Ordenamientos.rtf";
+                if (sfd.ShowDialog(this) == DialogResult.OK)
+                {
+                    GuardarReporteRtf(sfd.FileName);
+                    MessageBox.Show("Reporte guardado.");
+                }
+            }
+        }
+
+        private void GuardarReporteRtf(string ruta)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("REPORTE DE ORDENAMIENTOS");
+            sb.AppendLine(new string('=',40));
+            sb.AppendLine();
+
+            sb.AppendLine($"Burbuja -> Tiempo: {relojBurbuja.ElapsedMilliseconds} ms, Comparaciones: {iterBurbujaComparaciones:N0}, Intercambios: {iterBurbujaIntercambios:N0}");
+            sb.AppendLine($"QuickSort -> Tiempo: {relojQuick.ElapsedMilliseconds} ms, Particiones: {iterQuickParticiones:N0}, Comparaciones: {iterQuickComparaciones:N0}");
+            sb.AppendLine($"MergeSort -> Tiempo: {relojMerge.ElapsedMilliseconds} ms, Mezclas: {iterMergeMezclas:N0}, Comparaciones: {iterMergeComparaciones:N0}");
+            sb.AppendLine($"SelectionSort -> Tiempo: {relojSelection.ElapsedMilliseconds} ms, Comparaciones: {iterSelectionComparaciones:N0}, Intercambios: {iterSelectionIntercambios:N0}");
+
+            using (var rtb = new RichTextBox())
+            {
+                rtb.Text = sb.ToString();
+                rtb.SaveFile(ruta, RichTextBoxStreamType.RichText);
+            }
+        }
+
+        private void ActualizarChart(string algoritmo, long ms)
+        {
+            if (chartTiempos == null) return;
+            var serie = chartTiempos.Series[algoritmo];
+            if (serie != null)
+            {
+                serie.Points.Clear();
+                serie.Points.AddY(ms);
+            }
+        }
+    }
+}

@@ -1,0 +1,321 @@
+﻿namespace Practica_MultiThreading
+{
+    partial class Form1
+    {
+        /// <summary>
+        /// Variable del diseñador necesaria.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Limpiar los recursos que se estén usando.
+        /// </summary>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Código generado por el Diseñador de Windows Forms
+
+        /// <summary>
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.btnGenerar = new System.Windows.Forms.Button();
+            this.btnIniciar = new System.Windows.Forms.Button();
+            this.progressBurbuja = new System.Windows.Forms.ProgressBar();
+            this.progressQuicksort = new System.Windows.Forms.ProgressBar();
+            this.lblQuicksort = new System.Windows.Forms.Label();
+            this.lblBurbuja = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.backgroundWorkerQuickSort = new System.ComponentModel.BackgroundWorker();
+            this.numCantidad = new System.Windows.Forms.NumericUpDown();
+            this.labelCantidad = new System.Windows.Forms.Label();
+            this.btnDetener = new System.Windows.Forms.Button();
+            this.btnGuardarReporte = new System.Windows.Forms.Button();
+            this.progressMerge = new System.Windows.Forms.ProgressBar();
+            this.progressSelection = new System.Windows.Forms.ProgressBar();
+            this.lblMerge = new System.Windows.Forms.Label();
+            this.lblSelection = new System.Windows.Forms.Label();
+            this.chartTiempos = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.backgroundWorkerMergeSort = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorkerSelectionSort = new System.ComponentModel.BackgroundWorker();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTiempos)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // btnGenerar
+            // 
+            this.btnGenerar.Location = new System.Drawing.Point(62, 203);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(108, 23);
+            this.btnGenerar.TabIndex = 0;
+            this.btnGenerar.Text = "Generar Datos";
+            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
+            // 
+            // btnIniciar
+            // 
+            this.btnIniciar.Location = new System.Drawing.Point(62, 238);
+            this.btnIniciar.Name = "btnIniciar";
+            this.btnIniciar.Size = new System.Drawing.Size(144, 23);
+            this.btnIniciar.TabIndex = 1;
+            this.btnIniciar.Text = "Iniciar Ordenamiento";
+            this.btnIniciar.UseVisualStyleBackColor = true;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
+            // 
+            // progressBurbuja
+            // 
+            this.progressBurbuja.Location = new System.Drawing.Point(62, 56);
+            this.progressBurbuja.Name = "progressBurbuja";
+            this.progressBurbuja.Size = new System.Drawing.Size(200, 23);
+            this.progressBurbuja.TabIndex = 2;
+            // 
+            // progressQuicksort
+            // 
+            this.progressQuicksort.Location = new System.Drawing.Point(62, 125);
+            this.progressQuicksort.Name = "progressQuicksort";
+            this.progressQuicksort.Size = new System.Drawing.Size(200, 23);
+            this.progressQuicksort.TabIndex = 3;
+            // 
+            // lblQuicksort
+            // 
+            this.lblQuicksort.AutoSize = true;
+            this.lblQuicksort.Location = new System.Drawing.Point(59, 106);
+            this.lblQuicksort.Name = "lblQuicksort";
+            this.lblQuicksort.Size = new System.Drawing.Size(87, 16);
+            this.lblQuicksort.TabIndex = 4;
+            this.lblQuicksort.Text = "QuickSort 0%";
+            // 
+            // lblBurbuja
+            // 
+            this.lblBurbuja.AutoSize = true;
+            this.lblBurbuja.Location = new System.Drawing.Point(59, 37);
+            this.lblBurbuja.Name = "lblBurbuja";
+            this.lblBurbuja.Size = new System.Drawing.Size(75, 16);
+            this.lblBurbuja.TabIndex = 5;
+            this.lblBurbuja.Text = "Burbuja 0%";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Location = new System.Drawing.Point(589, 56);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 84);
+            this.listBox1.TabIndex = 6;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 16;
+            this.listBox2.Location = new System.Drawing.Point(589, 177);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(120, 84);
+            this.listBox2.TabIndex = 7;
+            // 
+            // backgroundWorkerQuickSort
+            // 
+            this.backgroundWorkerQuickSort.WorkerReportsProgress = true;
+            this.backgroundWorkerQuickSort.WorkerSupportsCancellation = true;
+            this.backgroundWorkerQuickSort.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerQuickSort_DoWork);
+            this.backgroundWorkerQuickSort.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerQuickSort_ProgressChanged);
+            this.backgroundWorkerQuickSort.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerQuickSort_RunWorkerCompleted);
+            // 
+            // numCantidad
+            // 
+            this.numCantidad.Location = new System.Drawing.Point(62, 15);
+            this.numCantidad.Maximum = new decimal(new int[] {
+            2000000,
+            0,
+            0,
+            0});
+            this.numCantidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCantidad.Name = "numCantidad";
+            this.numCantidad.Size = new System.Drawing.Size(200, 22);
+            this.numCantidad.TabIndex = 8;
+            this.numCantidad.ThousandsSeparator = true;
+            this.numCantidad.Value = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            // 
+            // labelCantidad
+            // 
+            this.labelCantidad.AutoSize = true;
+            this.labelCantidad.Location = new System.Drawing.Point(269, 17);
+            this.labelCantidad.Name = "labelCantidad";
+            this.labelCantidad.Size = new System.Drawing.Size(138, 16);
+            this.labelCantidad.TabIndex = 9;
+            this.labelCantidad.Text = "Cantidad de números";
+            // 
+            // btnDetener
+            // 
+            this.btnDetener.Location = new System.Drawing.Point(212, 238);
+            this.btnDetener.Name = "btnDetener";
+            this.btnDetener.Size = new System.Drawing.Size(108, 23);
+            this.btnDetener.TabIndex = 10;
+            this.btnDetener.Text = "Detener";
+            this.btnDetener.UseVisualStyleBackColor = true;
+            this.btnDetener.Click += new System.EventHandler(this.btnDetener_Click);
+            // 
+            // btnGuardarReporte
+            // 
+            this.btnGuardarReporte.Location = new System.Drawing.Point(62, 269);
+            this.btnGuardarReporte.Name = "btnGuardarReporte";
+            this.btnGuardarReporte.Size = new System.Drawing.Size(258, 23);
+            this.btnGuardarReporte.TabIndex = 11;
+            this.btnGuardarReporte.Text = "Guardar reporte (Word/RTF)";
+            this.btnGuardarReporte.UseVisualStyleBackColor = true;
+            this.btnGuardarReporte.Click += new System.EventHandler(this.btnGuardarReporte_Click);
+            // 
+            // progressMerge
+            // 
+            this.progressMerge.Location = new System.Drawing.Point(62, 182);
+            this.progressMerge.Name = "progressMerge";
+            this.progressMerge.Size = new System.Drawing.Size(200, 23);
+            this.progressMerge.TabIndex = 12;
+            // 
+            // progressSelection
+            // 
+            this.progressSelection.Location = new System.Drawing.Point(62, 244);
+            this.progressSelection.Name = "progressSelection";
+            this.progressSelection.Size = new System.Drawing.Size(200, 23);
+            this.progressSelection.TabIndex = 13;
+            this.progressSelection.Visible = false;
+            // 
+            // lblMerge
+            // 
+            this.lblMerge.AutoSize = true;
+            this.lblMerge.Location = new System.Drawing.Point(59, 163);
+            this.lblMerge.Name = "lblMerge";
+            this.lblMerge.Size = new System.Drawing.Size(100, 16);
+            this.lblMerge.TabIndex = 14;
+            this.lblMerge.Text = "MergeSort 0%";
+            // 
+            // lblSelection
+            // 
+            this.lblSelection.AutoSize = true;
+            this.lblSelection.Location = new System.Drawing.Point(59, 225);
+            this.lblSelection.Name = "lblSelection";
+            this.lblSelection.Size = new System.Drawing.Size(115, 16);
+            this.lblSelection.TabIndex = 15;
+            this.lblSelection.Text = "SelectionSort 0%";
+            // 
+            // chartTiempos
+            // 
+            this.chartTiempos.Location = new System.Drawing.Point(320, 56);
+            this.chartTiempos.Name = "chartTiempos";
+            this.chartTiempos.Size = new System.Drawing.Size(250, 236);
+            this.chartTiempos.TabIndex = 16;
+            this.chartTiempos.Text = "chart1";
+            var chartArea = new System.Windows.Forms.DataVisualization.Charting.ChartArea("ChartArea1");
+            this.chartTiempos.ChartAreas.Add(chartArea);
+            var legend = new System.Windows.Forms.DataVisualization.Charting.Legend("Legend1");
+            this.chartTiempos.Legends.Add(legend);
+            var seriesBurbuja = new System.Windows.Forms.DataVisualization.Charting.Series("Burbuja");
+            seriesBurbuja.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            seriesBurbuja.ChartArea = "ChartArea1";
+            seriesBurbuja.Legend = "Legend1";
+            this.chartTiempos.Series.Add(seriesBurbuja);
+            var seriesQuick = new System.Windows.Forms.DataVisualization.Charting.Series("QuickSort");
+            seriesQuick.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            seriesQuick.ChartArea = "ChartArea1";
+            seriesQuick.Legend = "Legend1";
+            this.chartTiempos.Series.Add(seriesQuick);
+            var seriesMerge = new System.Windows.Forms.DataVisualization.Charting.Series("MergeSort");
+            seriesMerge.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            seriesMerge.ChartArea = "ChartArea1";
+            seriesMerge.Legend = "Legend1";
+            this.chartTiempos.Series.Add(seriesMerge);
+            var seriesSelection = new System.Windows.Forms.DataVisualization.Charting.Series("SelectionSort");
+            seriesSelection.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Column;
+            seriesSelection.ChartArea = "ChartArea1";
+            seriesSelection.Legend = "Legend1";
+            this.chartTiempos.Series.Add(seriesSelection);
+            // 
+            // backgroundWorkerMergeSort
+            // 
+            this.backgroundWorkerMergeSort.WorkerReportsProgress = true;
+            this.backgroundWorkerMergeSort.WorkerSupportsCancellation = true;
+            this.backgroundWorkerMergeSort.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerMergeSort_DoWork);
+            this.backgroundWorkerMergeSort.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerMergeSort_ProgressChanged);
+            this.backgroundWorkerMergeSort.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerMergeSort_RunWorkerCompleted);
+            // 
+            // backgroundWorkerSelectionSort
+            // 
+            this.backgroundWorkerSelectionSort.WorkerReportsProgress = true;
+            this.backgroundWorkerSelectionSort.WorkerSupportsCancellation = true;
+            this.backgroundWorkerSelectionSort.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSelectionSort_DoWork);
+            this.backgroundWorkerSelectionSort.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSelectionSort_ProgressChanged);
+            this.backgroundWorkerSelectionSort.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSelectionSort_RunWorkerCompleted);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.chartTiempos);
+            this.Controls.Add(this.lblSelection);
+            this.Controls.Add(this.lblMerge);
+            this.Controls.Add(this.progressSelection);
+            this.Controls.Add(this.progressMerge);
+            this.Controls.Add(this.btnGuardarReporte);
+            this.Controls.Add(this.btnDetener);
+            this.Controls.Add(this.labelCantidad);
+            this.Controls.Add(this.numCantidad);
+            this.Controls.Add(this.listBox2);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lblBurbuja);
+            this.Controls.Add(this.lblQuicksort);
+            this.Controls.Add(this.progressQuicksort);
+            this.Controls.Add(this.progressBurbuja);
+            this.Controls.Add(this.btnIniciar);
+            this.Controls.Add(this.btnGenerar);
+            this.Name = "Form1";
+            this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTiempos)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button btnGenerar;
+        private System.Windows.Forms.Button btnIniciar;
+        private System.Windows.Forms.ProgressBar progressBurbuja;
+        private System.Windows.Forms.ProgressBar progressQuicksort;
+        private System.Windows.Forms.Label lblQuicksort;
+        private System.Windows.Forms.Label lblBurbuja;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerQuickSort;
+        private System.Windows.Forms.NumericUpDown numCantidad;
+        private System.Windows.Forms.Label labelCantidad;
+        private System.Windows.Forms.Button btnDetener;
+        private System.Windows.Forms.Button btnGuardarReporte;
+        private System.Windows.Forms.ProgressBar progressMerge;
+        private System.Windows.Forms.ProgressBar progressSelection;
+        private System.Windows.Forms.Label lblMerge;
+        private System.Windows.Forms.Label lblSelection;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTiempos;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerMergeSort;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerSelectionSort;
+    }
+}
+
